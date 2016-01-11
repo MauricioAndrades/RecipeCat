@@ -9,6 +9,9 @@ http://codepen.io/arbaoui_mehdi/pen/JfpEm
 ### pivotal tracker instructional video
 https://www.pivotaltracker.com/help/gettingstarted
 
+### jade converter
+http://naltatis.github.io/jade-syntax-docs/
+
 ## AppFunctionality:
 Step: 1 read through API's and determine app functionality.
 
