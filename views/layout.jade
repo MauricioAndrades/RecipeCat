@@ -1,26 +1,21 @@
 doctype html
-html(lang='en')
+html
   head
-    title RecipetCat
+    title
     script(src='//code.jquery.com/jquery-1.12.0.min.js')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='/javascript/client.js')
+    script(rel='text/javascript' src='/javascript/client.js')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    
+    body
+    label(for='q-')
+    input#recipe-q(type='text', name='q', value='')
+    input#recipe-q-button(type='button', name='name', value='Search')
+    h3 food Search Results: 
+    
+    div#q-results.results
+    p #{search}
 
-  body(data-spy='scroll', data-target='ol', data-offset='50')
-    nav#nav.navbar.navbar-inverse.nav.bar-top
-      p#nav.navbar-text.navbar
-        a.navbar-link(href='#')
-      p#fridge.navbar-text.navbar
-        a.navbar-link(href='#') Fridge
-      p#pantry.navbar-text.navbar
-        a.navbar-link(href='#') Pantry
-      p.navbar-text.navbar
-        a.navbar-link(href='#') Log in
-      p.navbar-text.navbar
-        a.navbar-link(href='#') Log out
 
-  div
-      label(for='recipe-q')
-      input#recipe-q(type='text', name='q', value='')
-      input#recipe-q-button(type='button', name='name', value='Search')
+
+  

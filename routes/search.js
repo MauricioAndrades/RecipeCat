@@ -11,6 +11,8 @@ var router = express.Router();
  */
 router.get('/', function(req, res, next) {
   console.log("req.query.search: " + req.query.search);
+  var x = req.query.search;
+  res.send(x);
   res.end();
   });
 
