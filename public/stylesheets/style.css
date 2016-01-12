@@ -6,3 +6,94 @@ body {
 a {
   color: #00B7FF;
 }
+
+#pantry{
+  position:fixed;
+  font-size:28px;
+  font-family:Lucida;
+  
+
+  left:500px;
+}
+
+#fridge{
+  position:fixed;
+  font-size:28px;
+  font-family:Lucida;
+  font-color:red;
+  font-style:none;
+
+
+  left:650px;
+}
+
+#fridge a:hover { 
+  text-decoration: none;
+
+}
+
+#pantry a:hover { 
+  text-decoration: none; 
+}
+
+#nav{
+  background-color:#11456E;
+  opacity:.9;
+  padding:0px;
+  margin:0px;
+}
+
+#lowerNav{
+  position:fixed;
+  top:20px;
+}
+
+#navBottom{
+  background-color:#11456E;
+  opacity:.9;
+}
+
+button{
+  opacity:.7;
+  margin:4px;
+}
+
+.list-group{
+  font-family:Lucida;
+  font-weight:bold;
+  background-color:grey;
+  color:blue;
+  border:2px solid #11456E;
+  opacity:.9;
+}
+
+.list-group li:hover{
+  background-color:red;
+  opacity:.5;
+}
+
+.list-group.list-group2{
+  font-family:Courier;
+  font-weight:bold;
+  background-color:red;
+  color:red;
+  border:9px solid black;
+  opacity:.9;
+}
+
+.list-group.list-group2 li:hover{
+  background-color:red;
+  opacity:.5;
+}
+
+#lColOne{
+padding:0;
+}
+
+
+
+#scroll-able{
+  width:160px;
+  height:555px;
+  overflow:scroll;
+}
