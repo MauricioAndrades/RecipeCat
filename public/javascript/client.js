@@ -11,24 +11,23 @@
 })();
 
 /**
- * function bootstraps the recipe searchbar
+ * FUNCTION BOOTSTRAPS THE RECIPE SEARCHBAR
  * creates an ajax request
  * @return {$.ajax({
-     url: '/path/to/route',
-     type: 'default GET (Other values: POST)',
- })
- .done(function() {
-     console.log("success");
- })
- .fail(function() {
-     console.log("error");
- })
- .always(function() {
-     console.log("complete");
- });
-  object} [description]
+ *     url: '/path/to/route',
+ *     type: 'default GET (Other values: POST)',
+ * })
+ * .done(function() {
+ *     console.log("success");
+ * })
+ * .fail(function() {
+ *     console.log("error");
+ * })
+ * .always(function() {
+ *     console.log("complete");
+ * });
  */
-function recipetStart() {
+function recipeStart() {
 
     /** event listener on search button click */
     $('#recipe-q-button').on('click', function ajaxRequest() {

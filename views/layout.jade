@@ -1,10 +1,12 @@
-html
+doctype html
+html(lang='en')
   head
-    title
+    title RecipetCat
     script(src='//code.jquery.com/jquery-1.12.0.min.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascript/client.js')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
+
   body(data-spy='scroll', data-target='ol', data-offset='50')
     nav#nav.navbar.navbar-inverse.nav.bar-top
       p#nav.navbar-text.navbar
@@ -18,10 +20,7 @@ html
       p.navbar-text.navbar
         a.navbar-link(href='#') Log out
 
-
-
-
-        div
+  div
       label(for='recipe-q')
       input#recipe-q(type='text', name='q', value='')
       input#recipe-q-button(type='button', name='name', value='Search')

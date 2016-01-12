@@ -11,7 +11,6 @@ a {
   position:fixed;
   font-size:28px;
   font-family:Lucida;
-  
 
   left:500px;
 }
@@ -22,7 +21,6 @@ a {
   font-family:Lucida;
   font-color:red;
   font-style:none;
-
 
   left:650px;
 }
@@ -89,8 +87,6 @@ button{
 #lColOne{
 padding:0;
 }
-
-
 
 #scroll-able{
   width:160px;
