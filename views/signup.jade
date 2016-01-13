@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title
+    script(src='//code.jquery.com/jquery-1.12.0.min.js')
+    script(type='text/javascript' src='/javascript/client-log.js')
+    script(src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js")
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    form#register-form(action='', method='post', novalidate='novalidate')
+      h2 Registration
+      #form-content
+        fieldset
+          .fieldgroup
+            label(for='firstname') First Name
+            input(type='text', name='firstname')
+          .fieldgroup
+            label(for='lastname') Last Name
+            input(type='text', name='lastname')
+          .fieldgroup
+            label(for='email') Email
+            input(type='text', name='email')
+          .fieldgroup
+            label(for='password') Password
+            input(type='password', name='password')
+          .fieldgroup
+            p.right
+              | 
+              a(target='_blank', href='/policy')
+              | 
+            input.submit(type='submit', value='Register')
+      .fieldgroup
+        p
+          |  
+          
+          | 
+   
+
+
+
+    

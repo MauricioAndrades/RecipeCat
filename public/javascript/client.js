@@ -1,6 +1,7 @@
 (function() {
     $(document).ready(function() {
         spotiStart();
+        nameAdd();
     });
 })();
 /**
@@ -19,6 +20,18 @@ function spotiStart() {
         };
         $.get('/search', params, function(data) {
           $("#q-results").html(data)
+        });
+    });
+}
+
+function nameAdd() {
+    var divPlaceholder = $('#username');
+    $('#submit').on('click', function ajaxRequest() {
+        var params = {
+            search: $('#username').val()
+        };
+        $.get('/search', params, function(data) {
+          $("#nameResults").html(data)
         });
     });
 }

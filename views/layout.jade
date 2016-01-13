@@ -5,9 +5,31 @@ html
     script(src='//code.jquery.com/jquery-1.12.0.min.js')
     script(rel='text/javascript' src='/javascript/client.js')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')      
     
-    body
+    nav#nav.navbar.navbar-inverse.nav.bar-top
+        ul
+          li#login
+            a#login-trigger(href='#')
+              | Log in 
+              span |
+            #login-content
+              form#form
+                fieldset#inputs
+                  input#username(type='email', name='Email', placeholder='email', required='')
+                  input#password(type='password', name='Password', placeholder='Password', required='')
+                  
+                fieldset#actions
+                  input#submit(type='submit', value='Log in')
+                  label
+                    input(type='checkbox', checked='checked')
+                    |  Keep me signed in
+          p#signup
+            a(href='/signup') Sign up
+
+            div#nameResults
+                p #{search}
+
     label(for='q-')
     input#recipe-q(type='text', name='q', value='')
     input#recipe-q-button(type='button', name='name', value='Search')
@@ -15,6 +37,36 @@ html
     
     div#q-results.results
     p #{search}
+
+    script
+        | $(document).ready(function(){
+        | $('#login-trigger').click(function() {
+        | $(this).next('#login-content').slideToggle();
+        | $(this).toggleClass('active');
+        | if ($(this).hasClass('active')) $(this).find('span').html('-')
+        | else $(this).find('span').html('|')
+        | })
+        | $(function() {
+        | $('#form').on('submit',function(e) {
+        |e.preventDefault()
+        |$.ajax({
+        |type: "POST",
+        |url: "http://localhost:3000/",
+        |data: $(this).serialize(),
+        |success: function() {
+        |  alert('success');
+        |}
+        |});
+        |})
+        |})})
+        
+     
+
+
+
+
+
+
 
 
 

@@ -1,28 +1,29 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:white;
+
 }
 
 a {
   color: #00B7FF;
 }
 
-#pantry{
-  position:fixed;
-  font-size:28px;
+#login{
+  
+  font-size:15px;
   font-family:Lucida;
 
-  left:500px;
 }
 
-#fridge{
-  position:fixed;
-  font-size:28px;
+#logout{
+ 
+  font-size:15px;
   font-family:Lucida;
   font-color:red;
   font-style:none;
+  display:inline;
 
-  left:650px;
 }
 
 #fridge a:hover { 
@@ -92,4 +93,20 @@ padding:0;
   width:160px;
   height:555px;
   overflow:scroll;
+}
+
+input{
+  background-color:#11456E;
+  opacity:.9;
+}
+
+#login{
+  font-style:none;
+}
+#for{
+  border:0px;
+}
+
+#nameResults{
+  float:right;
 }
