@@ -17,8 +17,8 @@ function recipeStart() {
         var params = {
             ingredients: $('#recipe-q').val()
         };
-        $.get('/ingredients', params, function setQResultsHTML(data) {
-          $("#q-results").html(data)
+        $.get('/ingredients', params, function ajaxCallback(data) {
+          console.log(data);
         });
     });
 }
