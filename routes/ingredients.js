@@ -24,7 +24,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 
     /** searchParams @type {string} store the value of the search in a var */
-    /*  "search=apples%2C%20bananas"*/
+    /*  "ingredients=apples%2C%20bananas"*/
     var qString = qs.stringify(req.query);
     /** ApiEndpoint @type {string} Path to api */
     var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
@@ -63,10 +63,10 @@ router.get('/', function(req, res, next) {
             });
 
             ingredientsArr.forEach(function(object) {
-                var searchQ = ApiIdEndPoint + object.id + '/information'
+                var searchQRecipe = ApiIdEndPoint + object.id + '/information'
 
 
-                unirest.get(searchQ)
+                unirest.get(searchQRecipe)
                 .header("X-Mashape-Key", process.env.APIKEY)
                 .end(function (result) {
                   // console.log(chalk.blue(result.status), chalk.yellow(result.headers), chalk.red(result.body));
