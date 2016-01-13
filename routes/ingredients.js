@@ -29,12 +29,12 @@ router.get('/', function(req, res, next) {
   /** ApiEndpoint @type {string} Path to api */
   var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
   /** searchQ @type {string} link to food-api endpoint */
-  var number = "&number=10"
+  var number = "&number=6"
   var searchQ = ApiEndpoint + qString + number;
 
   var ingredientsSearchOptions = {
     uri: searchQ,
-    headers: {'X-Mashape-Key': ''},
+    headers: {'X-Mashape-Key': process.env.APIKEY},
     json: true
   };
 
