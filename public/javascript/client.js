@@ -12,13 +12,13 @@ $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
 });
 
 function recipeStart() {
-    var divPlaceholder = $('#q-results');
+    // var divPlaceholder = $('#q-results');
     $('#recipe-q-button').on('click', function ajaxRequest() {
         var params = {
             ingredients: $('#recipe-q').val()
         };
-        $.get('/ingredients', params, function setQResultsHTML(data) {
-          $("#q-results").html(data)
+        $.get('/ingredients', params, function ajaxCallback(data) {
+          console.log(data.toString());
         });
     });
 }
