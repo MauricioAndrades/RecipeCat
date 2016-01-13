@@ -5,12 +5,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var qs = require('qs');
 
 ////////////////
 // REQ ROUTES //
 ////////////////
 var index = require('./routes/index');
-var search = require('./routes/search');
+var ingredients = require('./routes/ingredients');
 
 /**
  * still need:
@@ -43,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 
 /** route from search button */
-app.use('/search', search)
+app.use('/ingredients', ingredients)
 
 
 ////////////////////////////////////////////
