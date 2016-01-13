@@ -1,6 +1,9 @@
 var express = require('express');
-var router = express.Router();
+var unirest = require('unirest');
+var url = require('url');
+var qs = require('qs');
 
+var router = express.Router();
 
 /**
  * ROUTE THAT RECEIVES CLIENT SIDE AJAX REQUEST
@@ -8,13 +11,25 @@ var router = express.Router();
  * @param {object} res response object sent back to client
  * @param {function} next) { console.log("req.query.search: " + req.query.search); res.end(); } [description]
  * @return {[type]} [description]
+ *
+ * req._parsedUrl.search: /?search=apples%2C+bananas
+ * req.url: Object {search: "apples, bananas"}
+ * req.query = Object {
+    search: "apples, bannanas"
+ }
  */
 router.get('/', function(req, res, next) {
-  console.log("req.query.search: " + req.query.search);
-  var x = req.query.search;
-  res.send(x);
-  res.end();
-  });
+
+  /** searchParams @type {string} store the value of the search in a var */
+/*  "search=apples%2C%20bananas"*/
+  var qString = qs.stringify(req.query)
+  /** ApiEndpoint @type {string} Path to api */
+  var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?"
+  /** searchQ @type {string} link to food-api endpoint */
+  var searchQ = ApiEndpoint + qString;
+  
+
+});
 
 module.exports = router;
 
@@ -22,7 +37,8 @@ module.exports = router;
  * ENDPOINT DEFINITION:
  * GET https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients
 
- * // These code snippets use an open-source library. http://unirest.io/nodejs
+These code snippets use an open-source library. http://unirest.io/nodejs
+
 unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&number=5")
 .header("X-Mashape-Key", "ClMETfyVRKmshaETqZ2T8qTE83S3p1MpL58jsnwbSArzqxdEMF")
 .header("Accept", "application/json")
@@ -30,8 +46,8 @@ unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/
   console.log(result.status, result.headers, result.body);
 });
  
- * RES HEADER:
- *   Access-Control-Allow-Headers: *
+RES HEADER:
+Access-Control-Allow-Headers: *
 Access-Control-Allow-Methods: : GET, HEAD, POST, OPTIONS, DELETE, PUT
 Allow-Control-Allow-Methods: : GET, HEAD, POST, OPTIONS, DELETE, PUT
 Allow-Control-Allow-Origin: *
@@ -86,4 +102,26 @@ Server: Mashape/5.0.6
     "missedIngredientCount": 12,
     "likes": 9
   }
-] */
+] 
+
+*/
+
+/*
+
+$dir(qObj):
+
+    auth: null
+    hash: null
+    host: null
+    hostname: null
+    href: "/?search=hello"
+    path: "/?search=hello"
+    pathname: "/"
+    port: null
+    protocol: null
+    query: Object
+    search: "?search=hello"
+    slashes: null
+    __proto__: Url
+
+*/

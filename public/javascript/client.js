@@ -1,6 +1,6 @@
 (function() {
     $(document).ready(function() {
-        spotiStart();
+        recipeStart();
     });
 })();
 /**
@@ -11,13 +11,13 @@ $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     options.async = true;
 });
 
-function spotiStart() {
+function recipeStart() {
     var divPlaceholder = $('#q-results');
     $('#recipe-q-button').on('click', function ajaxRequest() {
         var params = {
-            search: $('#recipe-q').val()
+            ingredients: $('#recipe-q').val()
         };
-        $.get('/search', params, function(data) {
+        $.get('/ingredients', params, function setQResultsHTML(data) {
           $("#q-results").html(data)
         });
     });
