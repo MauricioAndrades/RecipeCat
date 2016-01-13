@@ -1,5 +1,4 @@
 var express = require('express');
-var unirest = require('unirest');
 var url = require('url');
 var qs = require('qs');
 var unirest = require('unirest');
