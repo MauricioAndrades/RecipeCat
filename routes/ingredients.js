@@ -51,17 +51,3 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
-
-
-  // These code snippets use an open-source library. http://unirest.io/nodejs
-  // var unirestRequest = {
-
-  // makeunicall: function(requestParam) {
-  //   unirest.get(requestParam)
-  //         .header("X-Mashape-Key", "cnwCrpf3T5mshcgcHAfnpt4RjWdPp1Ehy9BjsnJqNeVx1NM5hR")
-  //         .header("Accept", "application/json")
-  //         .end(function(result) {
-  //           console.log(result.status, result.headers, result.body);
-  //         });
-  //     }
-  //   };
