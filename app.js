@@ -12,7 +12,7 @@ var expressValidator = require('express-validator');
 ////////////////
 // REQ ROUTES //
 ////////////////
-var index = require('./routes/index');
+var index = require ('./routes/index');
 var search = require('./routes/search');
 var signup = require('./routes/signup');
 
@@ -39,6 +39,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+var passport = require('passport');
+var expressSession = require('express-session');
+// TODO - Why Do we need this key ?
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 ////////////
 // ROUTES //
