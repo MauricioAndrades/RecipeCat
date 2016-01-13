@@ -42,6 +42,7 @@ router.get('/', function(req, res, next) {
   rp(ingredientsSearchOptions)
     .then(function(obj) {
       console.log(obj);
+      
     })
     .catch(function(err) {
       console.log(err);
