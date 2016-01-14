@@ -14,7 +14,7 @@ var index = require('./routes/index');
 // var ingredients = require('./routes/ingredients');
 
 /** TEST ROUTE */
-var ingtest = require('./routes/ingtest.js')
+var ingredients = require('./routes/ingtest.js')
 
 /**
  * still need:
@@ -46,8 +46,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 
 /** route from search button */
-app.use('/ingredients', ingredients)
+// app.use('/ingredients', ingredients)
 
+/** test route */
+app.use('/ingredients', ingredients)
 ////////////////////////////////////////////
 // ERROR HANDLERS                         //
 // catch 404 and forward to error handler //
