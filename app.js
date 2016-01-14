@@ -12,6 +12,7 @@ var qs = require('qs');
 ////////////////
 var index = require('./routes/index');
 var ingredients = require('./routes/ingredients');
+var signup = require('./routes/signup')
 
 /**
  * still need:
