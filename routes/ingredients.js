@@ -36,50 +36,27 @@ router.get('/', function(req, res, next) {
     var number = "&number=10";
     var searchQ = ApiEndpoint + qString + number;
 
-    var ingredientsSearchOptions = {
-        uri: searchQ,
-        headers: { 'X-Mashape-Key': process.env.APIKEY },
-        json: true
-    };
-
-    /**
-     * RETURN PROMISE:
-     * makes a call to the api and returns an array of objects.
-     * Keys:
-     *  ingredientsArr.id,
-     *  ingredientsArr.image,
-     *  ingredientsArr.title,
-     *  ingredientsArr.usedIngredientCount,
-     *  ingredientsArr.missedIngredientCount,
-     */
-    rp(ingredientsSearchOptions)
-        .then(function(ingredientsArr) {
-            var recipeIdsArr = ingredientsArr.map(function(array) {
-                return {
-                    name: array.title,
-                    id: array.id
-                };
-            });
-
-
-
-            ingredientsArr.forEach(function(object) {
-                var searchQRecipe = ApiIdEndPoint + object.id + '/information';
-
-
-                unirest.get(searchQRecipe)
-                .header("X-Mashape-Key", process.env.APIKEY)
-                .end(function (result) {
-                  // console.log(chalk.blue(result.status), chalk.yellow(result.headers), chalk.red(result.body));
-                    console.log(result.body);
-                });
-            });
-
-
-        // for (var i = 0; i < ingredientsArr.length; i++) {console.log(ingredientsArr[i].id); };
-        }).catch(function(err) {
-            console.log(err);
-        });
+        var ingredientsSearchOptions = {
+            uri: searchQ,
+            headers: { 'X-Mashape-Key': process.env.APIKEY },
+            json: true
+        };
+        debugger;
+        rp(ingredientsSearchOptions).promise().bind(this)
+            .then(function(array) { console.log(array);}
+            //     array.map(function(array) {
+            //         return {
+            //             id: this.id,
+            //             uri: ApiIdEndPoint + this.id + '/information',
+            //             headers: { 'X-Mashape-Key': process.env.APIKEY },
+            //             json: true
+            //         };
+            //     });
+            // })
+            // .all(recipeIdsArr)
+            .catch(function(err) {
+                console.log(err)
+            }))
     res.end();
 });
 
