@@ -11,7 +11,7 @@ var qs = require('qs');
 // REQ ROUTES //
 ////////////////
 var index = require('./routes/index');
-var ingredients = require('./routes/ingredients');
+// var ingredients = require('./routes/ingredients');
 
 /** TEST ROUTE */
 var ingtest = require('./routes/ingtest.js')
