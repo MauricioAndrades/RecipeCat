@@ -3,7 +3,7 @@ var express = require('express');
 var qs = require('qs');
 var unirest = require('unirest');
 var rp = require('request-promise');
-var chalk = require('chalk')
+var chalk = require('chalk');
 
 require('dotenv').load();
 var router = express.Router();
@@ -24,9 +24,9 @@ var router = express.Router();
  router.use(function(req, res, next) {
 
      // log each request to the console
-     console.log('----------------------------------------------------------------------')
+     console.log('----------------------------------------------------------------------');
      console.log(req.method, req.url);
-     console.log('----------------------------------------------------------------------')
+
 
      // continue doing what we were doing and go to the route
      next();
@@ -34,27 +34,30 @@ var router = express.Router();
 
 
 router.get('/', function(req, res, next) {
+console.log(chalk.yellow('----------------------------hit'));
 
-    /** searchParams @type {string} store the value of the search in a var */
-    /*  "ingredients=apples%2C%20bananas"*/
-    var qString = qs.stringify(req.query);
-    /** ApiEndpoint @type {string} Path to api */
-    var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
-    var ApiIdEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"
-    /** searchQ @type {string} link to food-api endpoint */
-    /** number of recipies you wantreturned */
-    var number = "&number=10";
-    /** searchQ: search query, full search string to make call with */
-    var searchQ = ApiEndpoint + qString + number;
+/** searchParams @type {string} store the value of the search in a var */
+/*  "ingredients=apples%2C%20bananas"*/
+var qString = qs.stringify(req.query);
+console.log(chalk.red(qString));
+/** ApiEndpoint @type {string} Path to api */
+var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
+var ApiIdEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
+/** searchQ @type {string} link to food-api endpoint */
+/** number of recipies you wantreturned */
+var number = "&number=10";
+/** searchQ: search query, full search string to make call with */
+var searchQ = ApiEndpoint + qString + number;
 
-    var ingredientsSearchOptions = {
-        uri: searchQ,
-        headers: {
-            'X-Mashape-Key': process.env.APIKEY
-        },
-        json: true
-    };
-
+var options = {
+    uri: searchQ,
+    headers: {
+        'X-Mashape-Key': process.env.APIKEY,
+        'User-Agent': 'Request-Promise'
+    },
+    json: true
+};
+console.log(chalk.blue(options));
     /**
      * RETURN PROMISE:
      * makes a call to the api and returns an array of objects.
@@ -65,26 +68,26 @@ router.get('/', function(req, res, next) {
      *  ingredientsArr.usedIngredientCount,
      *  ingredientsArr.missedIngredientCount,
      */
-    rp(ingredientsSearchOptions)
-        .then(function(ingredientsArr) {
-            var recipeIdsArr = ingredientsArr.map(function(array) {
+    rp(options)
+    .then(function(arr) {
+            var recipeIdsArr = arr.map(function(array) {
                 return {
                     name: array.title,
                     id: array.id
                 };
             });
-            ingredientsArr.forEach(function(object) {
-                    var searchQRecipe = ApiIdEndPoint + object.id + '/information'
+            arr.forEach(function(object) {
+                    var searchQRecipe = ApiIdEndPoint + object.id + '/information';
                     unirest.get(searchQRecipe)
                         .header("X-Mashape-Key", process.env.APIKEY)
                         .end(function(result) {
                             // console.log(chalk.blue(result.status), chalk.yellow(result.headers), chalk.red(result.body));
                             console.log(result.body);
                         });
-                })
+                });
                 // for (var i = 0; i < ingredientsArr.length; i++) {console.log(ingredientsArr[i].id); };
         }).catch(function(err) {console.log(err);});
-    res.send(result.body);
+res.send(result.body);
 });
 
 module.exports = router;
