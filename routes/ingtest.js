@@ -4,7 +4,8 @@ var qs = require('qs');
 var unirest = require('unirest');
 var rp = require('request-promise');
 var chalk = require('chalk');
-
+var Promise = require('promise');
+var request = require('request');
 require('dotenv').load();
 var router = express.Router();
 
@@ -47,71 +48,60 @@ var ApiIdEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/
 /** number of recipies you wantreturned */
 var number = "&number=10";
 /** searchQ: search query, full search string to make call with */
-var searchQ = ApiEndpoint + qString + number;
+var uri = ApiEndpoint + qString + number;
 
 var options = {
-    uri: searchQ,
+    uri: uri,
     headers: {
         'X-Mashape-Key': process.env.APIKEY,
-        'User-Agent': 'Request-Promise'
+        'User-Agent': 'Request-Promise',
+        'Connection': 'Keep-Alive'
     },
     json: true
 };
-console.log(chalk.blue(options));
-    /**
-     * RETURN PROMISE:
-     * makes a call to the api and returns an array of objects.
-     * Keys:
-     *  ingredientsArr.id,
-     *  ingredientsArr.image,
-     *  ingredientsArr.title,
-     *  ingredientsArr.usedIngredientCount,
-     *  ingredientsArr.missedIngredientCount,
-     */
-    rp(options)
-    .then(function(arr) {
-            var recipeIdsArr = arr.map(function(array) {
-                return {
-                    name: array.title,
-                    id: array.id
-                };
-            });
-            arr.forEach(function(object) {
-                    var searchQRecipe = ApiIdEndPoint + object.id + '/information';
-                    unirest.get(searchQRecipe)
-                        .header("X-Mashape-Key", process.env.APIKEY)
-                        .end(function(result) {
-                            // console.log(chalk.blue(result.status), chalk.yellow(result.headers), chalk.red(result.body));
-                            console.log(result.body);
-                        });
-                });
-                // for (var i = 0; i < ingredientsArr.length; i++) {console.log(ingredientsArr[i].id); };
-        }).catch(function(err) {console.log(err);});
-res.send(result.body);
+
+
+    //
+debugger;
+    var promiseGet = new Promise(function (resolve, reject){
+        request.get(options.uri, options.headers, function (err, res) {
+            if(err) reject(err);
+            else resolve(res);
+        });
+    });
+
+    var promiseGetIng = promiseGet(options.uri, options.headers);
+    promiseGetIng.then(function(searchResponse){
+        console.log(searchResponse);
+    })
 });
 
 module.exports = router;
 
-///////////////////////
-//Get Recipe from ID //
-///////////////////////
-
 /**
-GET https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information
-
-
-unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/156992/information")
-.header("X-Mashape-Key", "ClMETfyVRKmshaETqZ2T8qTE83S3p1MpL58jsnwbSArzqxdEMF")
-.end(function (result) {
-  console.log(result.status, result.headers, result.body);
-});
-
-  artists = artists.items.map(function(artistObj) {
-    return {
-      name: artistObj.name,
-      id: artistObj.id,
-      url: artistObj.href
-    }
-  });
-
-*/
+ * RETURN PROMISE:
+ * makes a call to the api and returns an array of objects.
+ * Keys:
+ *  ingredientsArr.id,
+ *  ingredientsArr.image,
+ *  ingredientsArr.title,
+ *  ingredientsArr.usedIngredientCount,
+ *  ingredientsArr.missedIngredientCount,
+ */
+// rp(options)
+// .then(function(arr) {u
+//         var recipeIdsArr = arr.map(function(array) {
+//             return {
+//                 name: array.title,
+//                 id: array.id
+//             };
+//         });
+//         arr.forEach(function(object) {
+//                 var searchQRecipe = ApiIdEndPoint + object.id + '/information';
+//                 unirest.get(searchQRecipe)
+//                     .header("X-Mashape-Key", process.env.APIKEY)
+//                     .end(function(response) {
+//                         console.log(response.body);
+//                     });
+//             });
+//     }).finally(res.send(response)).catch(function(err) {console.log(err);});
