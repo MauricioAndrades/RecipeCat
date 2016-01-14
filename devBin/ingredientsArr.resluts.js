@@ -1069,3 +1069,5 @@ data = {
 	image: 'Green-Salad-With-Fresh-Orange-Juice-Dressing-645514.jpg',
 	imageUrls: ['Green-Salad-With-Fresh-Orange-Juice-Dressing-645514.jpg']
 }
+
+module.exports = data;

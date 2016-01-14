@@ -4,7 +4,7 @@ var qs = require('qs');
 var unirest = require('unirest');
 var rp = require('request-promise');
 var chalk = require('chalk')
-
+var data = require('../devBin/foodapiexample.js')
 require('dotenv').load();
 var router = express.Router();
 
@@ -60,26 +60,35 @@ router.get('/', function(req, res, next) {
                     name: array.title,
                     id: array.id
                 };
-            });
-
-            ingredientsArr.forEach(function(object) {
-                var searchQRecipe = ApiIdEndPoint + object.id + '/information'
-
-
-                unirest.get(searchQRecipe)
-                .header("X-Mashape-Key", process.env.APIKEY)
-                .end(function (result) {
-                  // console.log(chalk.blue(result.status), chalk.yellow(result.headers), chalk.red(result.body));
-                    console.log(result.body);
-                });
+            }).then(function(recipeIdsArr) {
+                var idSearchOptions = {
+                    uri: ApidIdEndPoint + recipeIdsArr + '/information',
+                    headers: {
+                        'X-Mashape-Key': process.env.APIKEY
+                    },
+                    json: true
+                };
             })
+
+            // ingredientsArr.forEach(function(object) {
+            //     var searchQRecipe = ApiIdEndPoint + object.id + '/information'
+
+
+            //     unirest.get(searchQRecipe)
+            //     .header("X-Mashape-Key", process.env.APIKEY)
+            //     .end(function (result) {
+            //       // console.log(chalk.blue(result.status), chalk.yellow(result.headers), chalk.red(result.body));
+            //         console.log(result.body);
+            //     });
+            // })
 
 
         // for (var i = 0; i < ingredientsArr.length; i++) {console.log(ingredientsArr[i].id); };
         }).catch(function(err) {
             console.log(err);
         });
-    res.end(result.body);
+    // res.end(result.body);
+    res.send(data);
 });
 
 module.exports = router;
