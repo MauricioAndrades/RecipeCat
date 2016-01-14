@@ -3,23 +3,26 @@ html
   head
     title
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js')
+   
     script(rel='text/javascript' src='/javascript/client.js')
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
+
     
     body
+
                 label(for='q-')
-            div#q-results.results(style="position:fixed;left:330px;top:10px;width:900px")
+            div#q-results.results(style="position:fixed;left:250px;top:10px;width:900px")
               input#recipe-q(type='text', name='q' placeholder='                                                                     Find a recipe' style='font-family:courier;font-size:21px;font-style:bold;color:b#605050')
-            a#recipe-q-button(type='button' href='#' style="background:white;height:40px;width:40px;margin-left:290px;padding-bottom:10px;box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, 0.8);") #{search}
-              label(for="log in")
-            a#recipe-q-button(type='button' href='/routes/signup' style="position:fixed;top:5px;right:100px;float:right;background:white;height:40px;width:90px;margin-left:290px;padding-bottom:10px;box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, 0.8);") #{search}
-            a#recipe-q-button(type='button' href='#' value='log in' style="position:fixed;top:5px;right:10px;background:white;height:40px;width:90px;margin-left:290px;padding-bottom:10px;box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, 0.8);") #{search}
+            a#recipe-q-button(type='button' href='#' style="background:white;height:40px;width:40px;margin-left:220px;padding-bottom:10px;box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, 0.8);") #{search}
+            input#recipe-q-button(type='text' name="name" href='#' placeholder='Name'  style="position:fixed;top:5px;right:150px;float:right;background:white;height:40px;width:130px;margin-left:290px;padding-bottom:10px;box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, 0.8);")
+            input#recipe-q-button(type='text' password="password" href='#' placeholder='Password' style="position:fixed;top:5px;right:10px;background:white;height:40px;width:140px;margin-left:290px;padding-bottom:10px;box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, 0.8);") 
+            a#recipe-q-button(type='submit' href='/signup' style="position:fixed;top:5px;right:280px;background:white;height:40px;width:80px;margin-left:290px;padding-bottom:10px;box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, 0.8);") submit
+           
 
-            
-
-
-            
+            div#nameResults
+                p #{search}
+          
     .responsive(style="background:white")
       ul.content(style="background:white")
         // 1
