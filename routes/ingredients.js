@@ -1,9 +1,8 @@
 var express = require('express');
-// var url = require('url');
+var url = require('url');
 var qs = require('qs');
 var unirest = require('unirest');
 var rp = require('request-promise');
-
 
 require('dotenv').load();
 var router = express.Router();
@@ -29,57 +28,41 @@ ApiEndpoint @type {string} Path to api
 number of recipies you wantreturned
 searchQ: search query, full search string to make call with
 */
-router.get('/', function(req, res, next) {
-    var qString = qs.stringify(req.query);
-    var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
-    var ApiIdEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
-    var number = "&number=10";
-    var searchQ = ApiEndpoint + qString + number;
 
-        var ingredientsSearchOptions = {
-            uri: searchQ,
-            headers: { 'X-Mashape-Key': process.env.APIKEY },
-            json: true
-        };
-        debugger;
-        rp(ingredientsSearchOptions).promise().bind(this)
-            .then(function(array) { console.log(array);}
-            //     array.map(function(array) {
-            //         return {
-            //             id: this.id,
-            //             uri: ApiIdEndPoint + this.id + '/information',
-            //             headers: { 'X-Mashape-Key': process.env.APIKEY },
-            //             json: true
-            //         };
-            //     });
-            // })
-            // .all(recipeIdsArr)
-            .catch(function(err) {
-                console.log(err)
-            }))
+router.get('/', function(req, res) {
+  var qString = qs.stringify(req.query);
+  var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
+  var ApiIdEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
+  var number = "&number=10";
+  var searchQ = ApiEndpoint + qString + number;
+
+  var uniparams = {
+    uri: searchQ,
+    headers: {
+      'X-Mashape-Key': process.env.APIKEY
+    },
+    json: true
+  };
+
+  var pget = function(url, uniparams) {
+    return new Promise(function makeuni(resolve, reject) {
+      req.get(url, uniparams.headers, function(error, response, body) {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      });
+    });
+  };
+
+  var uniprom = pget(searchQ, uniparams);
+
+  uniprom.then(function(searchResult) {
+    console.log(searchResult);
+    res.send(searchResult);
     res.end();
+  });
 });
 
 module.exports = router;
-
-///////////////////////
-//Get Recipe from ID //
-///////////////////////
-
-
-// GET https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information
-
-
-// unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/156992/information")
-// .header("X-Mashape-Key", "ClMETfyVRKmshaETqZ2T8qTE83S3p1MpL58jsnwbSArzqxdEMF")
-// .end(function (result) {
-//   console.log(result.status, result.headers, result.body);
-// });
-
-  // artists = artists.items.map(function(artistObj) {
-  //   return {
-  //     name: artistObj.name,
-  //     id: artistObj.id,
-  //     url: artistObj.href
-  //   }
-  // });

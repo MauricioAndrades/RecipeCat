@@ -17,7 +17,7 @@ function recipeStart() {
         var params = {
             ingredients: $('#recipe-q').val()
         };
-        $.get('/ingredients', params, function ajaxCallback(data) {
+        $.get('/ingtest', params, function ajaxCallback(data) {
           console.log(data.toString());
         });
     });
