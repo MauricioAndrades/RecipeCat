@@ -3,7 +3,7 @@ var url = require('url');
 var qs = require('qs');
 var unirest = require('unirest');
 var rp = require('request-promise');
-
+var request = ('request');
 require('dotenv').load();
 var router = express.Router();
 

@@ -21,6 +21,18 @@ var router = express.Router();
     search: "apples, bannanas"
  }
  */
+ router.use(function(req, res, next) {
+
+     // log each request to the console
+     console.log('----------------------------------------------------------------------')
+     console.log(req.method, req.url);
+     console.log('----------------------------------------------------------------------')
+
+     // continue doing what we were doing and go to the route
+     next();
+ });
+
+
 router.get('/', function(req, res, next) {
 
     /** searchParams @type {string} store the value of the search in a var */
