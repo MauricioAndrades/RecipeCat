@@ -25,13 +25,4 @@ function recipeStart() {
     });
 }
 
-        $(document).ready(function() {
-          $("#recipe-q-button").hover(function() {
-          $('#recipe-q-button').animate({
-            fontSize: '40px'
-          },200)
-          });
-          $('#recipe-q-button').mouseleave(function(){
-          $('#recipe-q-button').animate({fontSize : 28},150);
-          });
-          });
+        

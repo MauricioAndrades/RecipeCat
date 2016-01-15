@@ -11,15 +11,21 @@ var qs = require('qs');
 // REQ ROUTES //
 ////////////////
 var index = require('./routes/index');
+
 var ingredients = require('./routes/ingredients');
 var signup = require('./routes/signup')
+
+// var ingredients = require('./routes/ingredients');
+
+/** TEST ROUTE */
+//var ingredients = require('./routes/ingtest.js')
+
 
 /**
  * still need:
  *   user login route
  *   user signup route
  */
-
 
 var app = express();
 
@@ -45,9 +51,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 
 /** route from search button */
+// app.use('/ingredients', ingredients)
+
+/** test route */
 app.use('/ingredients', ingredients)
-
-
 ////////////////////////////////////////////
 // ERROR HANDLERS                         //
 // catch 404 and forward to error handler //
@@ -57,7 +64,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
 
 // development error handler
 // will print stacktrace
@@ -80,6 +86,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
