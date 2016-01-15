@@ -14,7 +14,7 @@ var index = require('./routes/index');
 // var ingredients = require('./routes/ingredients');
 
 /** TEST ROUTE */
-var ingredients = require('./routes/ingtest.js')
+var ingredients = require('./routes/ingredients.js')
 
 /**
  * still need:

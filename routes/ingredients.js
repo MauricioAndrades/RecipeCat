@@ -31,7 +31,7 @@ searchQ: search query, full search string to make call with
 
 
 router.get('/', function(request, response) {
-  var qString = qs.stringify(req.query);
+  var qString = qs.stringify(request.query);
   var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
   var ApiIdEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
   var number = "&number=10";
@@ -47,7 +47,7 @@ router.get('/', function(request, response) {
 
   var promiseGet = function(url, uniparams) {
     return new Promise(function makeuni(resolve, reject) {
-      request(url, uniparams.headers, function(error, response, body) {
+      request.get(url, headers, function(error, response, body) {
         if (error) {
           reject(error);
         } else {
