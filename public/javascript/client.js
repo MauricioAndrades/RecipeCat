@@ -19,7 +19,7 @@ function recipeStart() {
         };
         $.get('/ingredients', params, function ajaxCallback(data) {
           console.log(data);
-    
+
         });
 
     });
