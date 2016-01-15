@@ -3,23 +3,32 @@ var url = require('url');
 var qs = require('qs');
 var unirest = require('unirest');
 var rp = require('request-promise');
+var chalk = require('chalk')
+var data = require('../devBin/foodapiexample.js')
 var request = ('request');
 require('dotenv').load();
 var router = express.Router();
 
+///////////////////////
+//Get Recipe from ID //
+///////////////////////
+
 /**
- * ROUTE THAT RECEIVES CLIENT SIDE AJAX REQUEST
- * @param {object} req req object made on clientside
- * @param {object} res response object sent back to client
- * @param {function} next) { console.log("req.query.search: " + req.query.search); res.end(); } [description]
- * @return {[type]} [description]
- *
- * req._parsedUrl.search: /?search=apples%2C+bananas
- * req.url: Object {search: "apples, bananas"}
- * req.query = Object {
-    search: "apples, bannanas"
- }
+GET https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information
+unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/156992/information")
+.header("X-Mashape-Key", "ClMETfyVRKmshaETqZ2T8qTE83S3p1MpL58jsnwbSArzqxdEMF")
+.end(function (result) {
+  console.log(result.status, result.headers, result.body);
+});
+  artists = artists.items.map(function(artistObj) {
+    return {
+      name: artistObj.name,
+      id: artistObj.id,
+      url: artistObj.href
+    }
+  });
 */
+
 
 /**
 searchParams @type {string} store the value of the search in a var

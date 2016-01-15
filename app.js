@@ -11,10 +11,19 @@ var qs = require('qs');
 // REQ ROUTES //
 ////////////////
 var index = require('./routes/index');
+
+var ingredients = require('./routes/ingredients');
+var signup = require('./routes/signup')
+
 // var ingredients = require('./routes/ingredients');
 
 /** TEST ROUTE */
+
+//var ingredients = require('./routes/ingtest.js')
+
+
 var ingredients = require('./routes/ingredients.js')
+
 
 /**
  * still need:
