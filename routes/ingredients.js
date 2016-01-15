@@ -31,6 +31,7 @@ searchQ: search query, full search string to make call with
 
 
 router.get('/', function(request, response) {
+
   var qString = qs.stringify(request.query);
   var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
   var ApiIdEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
