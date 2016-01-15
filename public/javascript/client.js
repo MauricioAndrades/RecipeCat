@@ -161,22 +161,10 @@ function recipeStart() {
         params = {
             ingredients: $('#recipe-q').val()
         };
-
         $.get('/ingredients', params, function ajaxCallback(data) {
-<<<<<<< HEAD
           console.log(data);
-
-=======
-            console.log(data);
             // do all client injection javascript in here
->>>>>>> d6410347fa844cf854234ad0250f25c1be334eeb
         });
-
     });
-<<<<<<< HEAD
 }
-
-        
-=======
 }
->>>>>>> d6410347fa844cf854234ad0250f25c1be334eeb
