@@ -5,9 +5,7 @@ var unirest = require('unirest');
 var rp = require('request-promise');
 var chalk = require('chalk')
 var data = require('../devBin/foodapiexample.js')
-
-
-
+var request = ('request');
 require('dotenv').load();
 var router = express.Router();
 
@@ -40,14 +38,15 @@ number of recipies you wantreturned
 searchQ: search query, full search string to make call with
 */
 
-router.get('/', function(req, res) {
-  var qString = qs.stringify(req.query);
+
+router.get('/', function(request, response) {
+  var qString = qs.stringify(request.query);
   var ApiEndpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?";
   var ApiIdEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
   var number = "&number=10";
   var searchQ = ApiEndpoint + qString + number;
 
-  var uniparams = {
+  var params = {
     uri: searchQ,
     headers: {
       'X-Mashape-Key': process.env.APIKEY
@@ -55,9 +54,9 @@ router.get('/', function(req, res) {
     json: true
   };
 
-  var pget = function(url, uniparams) {
+  var promiseGet = function(url, uniparams) {
     return new Promise(function makeuni(resolve, reject) {
-      req.get(url, uniparams.headers, function(error, response, body) {
+      request.get(url, headers, function(error, response, body) {
         if (error) {
           reject(error);
         } else {
@@ -67,7 +66,7 @@ router.get('/', function(req, res) {
     });
   };
 
-  var uniprom = pget(searchQ, uniparams);
+  var uniprom = promiseGet(params.uri, params.headers);
 
   uniprom.then(function(searchResult) {
     console.log(searchResult);

@@ -18,7 +18,11 @@ var signup = require('./routes/signup')
 // var ingredients = require('./routes/ingredients');
 
 /** TEST ROUTE */
+
 //var ingredients = require('./routes/ingtest.js')
+
+
+var ingredients = require('./routes/ingredients.js')
 
 
 /**
