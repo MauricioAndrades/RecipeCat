@@ -25,6 +25,8 @@ function recipeStart() {
         })
         .done(function( data ) {
             console.log( "Data Saved: " + data );
+            localStorage.setItem('dataObj', JSON.stringify(data));
+
         })
         .fail(function( data) {
             console.log("data failed");

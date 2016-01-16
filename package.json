@@ -26,5 +26,8 @@
     "request-promise": "^2.0.0",
     "serve-favicon": "~2.3.0",
     "unirest": "^0.4.2"
+  },
+  "devDependencies": {
+    "bunyan-promise": "^0.1.4"
   }
 }
