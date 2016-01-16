@@ -11,9 +11,10 @@ function recipeStart() {
     // var divPlaceholder = $('#q-results');
     // .on( events [, selector ] [, data ], handler )
     $('#recipe-q-button').on('click', function() {
-
+        console.log('ajax begins');
         /** get value of searchfield */
-        var params = $('#recipe-q').val();
+        // var params = $('#recipe-q').val();
+        var params = "Apples";
         $.ajax({
             async: true,
             method: "GET",
