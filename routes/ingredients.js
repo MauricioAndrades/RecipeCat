@@ -30,7 +30,7 @@ router.get('/', function(req, res) {
           /*}],*/
           headers: {"X-Mashape-Key": process.env.APIKEY},
           params: {
-            ingredients: req.query,
+            ingredients: req.query.ingredients,
           },
         /*  paramsSerializer: function(params) {*/
         /*    return Qs.stringify(params, {arrayFormat: 'brackets'})*/
