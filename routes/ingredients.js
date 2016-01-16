@@ -33,6 +33,12 @@ router.get('/', function(req, res) {
         responseType: 'json',
         xsrfCookieName: 'XSRF-TOKEN',
         xsrfHeaderName: 'X-XSRF-TOKEN'
+    }).then(function(data) {
+        console.log('--------------------hit');
+        for (var i = 0; i < data.data.length; i++) {
+            console.log(data.data[i].id);
+        }
+        // fs.writeFile('./data.json', JSON.stringify(data.data, null, 2), 'utf-8');
     })
     .then(function(data) {
         console.log(data.data);
@@ -42,10 +48,7 @@ router.get('/', function(req, res) {
         console.log(data.config);
         res.json(data)
     })
-    .then(function(data) {
-        console.log('--------------------hit');
-        fs.writeFile('./data.json', JSON.stringify(data, null, 2), 'utf-8');
-    })
+
     .catch(function(data) {
         console.log(data);
         res.render('what happend');
