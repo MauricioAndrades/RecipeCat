@@ -14,7 +14,9 @@ function recipeStart() {
         console.log('ajax begins');
         /** get value of searchfield */
         // var params = $('#recipe-q').val();
-        var params = "Apples";
+        var params = {
+            ingredients: $('#recipe-q').val()
+        }
         $.ajax({
             async: true,
             method: "GET",
