@@ -18,11 +18,6 @@ router.get('/', function(req, res) {
     var number = "&number=6";
     var searchQ = ApiEndpoint + qString + number;
 
-    /*function getRecepiesfromIngredients() {
-        return axios.get()
-    }*/
-
-
     axios.get('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients', {
         url: '/ingredients',
         method: 'get',
@@ -37,10 +32,10 @@ router.get('/', function(req, res) {
         responseType: 'json',
         xsrfCookieName: 'XSRF-TOKEN',
         xsrfHeaderName: 'X-XSRF-TOKEN',
-        transformResponse: [function (data) {
-            return JSON.stringify(data);
-            // return data;
-          }],
+        // transformResponse: [function (data) {
+        //     return JSON.stringify(data);
+        //     // return data;
+        //   }],
     })/*.then(function(data) {
         console.log('--------------------hit');
         var ids = [];
@@ -54,29 +49,23 @@ router.get('/', function(req, res) {
         // fs.writeFile('./data.json', JSON.stringify(data.data, null, 2), 'utf-8');
     })*/
     .then(function(data) {
-        console.log(data.data);
-        console.log(data.data);
-        console.log(data.status);
-        console.log(data.statusText);
-        console.log(data.headers);
-        console.log(data.config);
-        res.json(JSON.stringify(data));
+        // console.log(data.data);
+        // console.log(data.data);
+        // console.log(data.status);
+        // console.log(data.statusText);
+        // console.log(data.headers);
+        // console.log(data.config);
+        res.json(data);
     })
-    /*.catch(function(data) {
-        console.log('error');
-        res.end('what happend');
-    });*/
     .catch(function (response) {
       if (response instanceof Error) {
-        // Something happened in setting up the request that triggered an Error
         console.log('Error', response.message);
       } else {
-        // The request was made, but the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.headers);
-        console.log(response.config);
+          res.send('idk');
+        // console.log(response.data);
+        // console.log(response.status);
+        // console.log(response.headers);
+        // console.log(response.config);
       }
     });
 });
